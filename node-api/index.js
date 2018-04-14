@@ -14,8 +14,13 @@ console.log(result); // 3
 
 // node.js 의 file system 모듈 사용
 const fs = require('fs');
-
+/* 동기 방식
 const data = fs.readFileSync('./data.txt', 'utf-8');
-
 console.log(data);
+*/
+// 비동기 방식
+const data = fs.readFile('./data.txt', 'utf-8', function(err ,data) {
+  console.log(data);
+});
+console.log('line after fs.readFile');
 
