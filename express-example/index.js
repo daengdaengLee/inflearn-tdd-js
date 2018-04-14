@@ -1,20 +1,19 @@
 const express = require('express');
-const morgan = require('morgan');
 const app = express();
 
-function logger(req, res, next) {
-  console.log('i am logger');
+function commonmw(req, res, next) {
+  console.log('commonmw');
+  next(new Error('error ouccered'));
+}
+
+function errormw(err, req, res, next) {
+  console.log(err.message);
+  // 에러를 처리하거나
   next();
 }
 
-function logger2(req, res, next) {
-  console.log('i am logger2');
-  next();
-}
-
-app.use(logger);
-app.use(logger2);
-app.use(morgan('dev'));
+app.use(commonmw);
+app.use(errormw);
 
 app.listen(3000, function() {
   console.log('Server is running');
