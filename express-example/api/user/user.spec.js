@@ -6,14 +6,14 @@ const app = require('../../');
 const models = require('../../models');
 
 describe('GET /users 는', () => {
+  const users = [
+    { name: 'alice' },
+    { name: 'bek' },
+    { name: 'chris' },
+  ];
+  before(() => models.sequelize.sync({ force: true }));
+  before(() => models.User.bulkCreate(users));
   describe('성공시', () => {
-    const users = [
-      { name: 'alice' },
-      { name: 'bek' },
-      { name: 'chris' },
-    ];
-    before(() => models.sequelize.sync({ force: true }));
-    before(() => models.User.bulkCreate(users));
     it('유저 객체를 담은 배열로 응답한다.', done => {
       request(app)
         .get('/users')
@@ -66,7 +66,15 @@ describe('GET /users/:id 는', () => {
     });
   });
 });
-describe.only('DELETE /users/:id 는', () => {
+
+describe('DELETE /users/:id 는', () => {
+  const users = [
+    { name: 'alice' },
+    { name: 'bek' },
+    { name: 'chris' },
+  ];
+  before(() => models.sequelize.sync({ force: true }));
+  before(() => models.User.bulkCreate(users));
   describe('성공시', () => {
     it('204를 응답한다.', done => {
       request(app)
@@ -84,7 +92,15 @@ describe.only('DELETE /users/:id 는', () => {
     });
   });
 });
-describe('POST /users 는', () => {
+
+describe.only('POST /users 는', () => {
+  const users = [
+    { name: 'alice' },
+    { name: 'bek' },
+    { name: 'chris' },
+  ];
+  before(() => models.sequelize.sync({ force: true }));
+  before(() => models.User.bulkCreate(users));
   describe('성공시', () => {
     let name = 'daniel';
     let body;
@@ -127,7 +143,15 @@ describe('POST /users 는', () => {
     });
   });
 });
+
 describe('PUT /users/:id 는', () => {
+  const users = [
+    { name: 'alice' },
+    { name: 'bek' },
+    { name: 'chris' },
+  ];
+  before(() => models.sequelize.sync({ force: true }));
+  before(() => models.User.bulkCreate(users));
   describe('성공시', () => {
     it('변경된 name을 응답한다.', done => {
       const name = 'chally';
