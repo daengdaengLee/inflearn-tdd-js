@@ -5,7 +5,7 @@ const request = require('supertest');
 const app = require('../../');
 const models = require('../../models');
 
-describe.only('GET /users 는', () => {
+describe('GET /users 는', () => {
   describe('성공시', () => {
     const users = [
       { name: 'alice' },
@@ -40,7 +40,7 @@ describe.only('GET /users 는', () => {
     });
   });
 });
-describe('GET /users/:id 는', () => {
+describe.only('GET /users/:id 는', () => {
   describe('성공시', () => {
     it('id가 1인 유저 객체를 반환한다.', done => {
       request(app)
