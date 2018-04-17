@@ -93,7 +93,7 @@ describe('DELETE /users/:id 는', () => {
   });
 });
 
-describe.only('POST /users 는', () => {
+describe('POST /users 는', () => {
   const users = [
     { name: 'alice' },
     { name: 'bek' },
